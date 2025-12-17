@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Successful</title>
+
+  <style>
+    :root {
+      --bg-light: skyblue;
+      --card-light: #ffffff;
+      --text-light: #1f2937;
+      --primary: #2563eb;
+      --success: #166534;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-light);
+      color: var(--text-light);
+    }
+
+    /* Card */
+    .container {
+      width: 560px;
+      background: var(--card-light);
+      padding: 42px;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+
+    .success-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--success);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    p {
+      font-size: 15px;
+      margin: 14px 0;
+    }
+
+    strong {
+      width: 90px;
+      display: inline-block;
+    }
+
+    /* 🔙 Sliding Back Button (Only Option Kept) */
+    .back-slider {
+      position: fixed;
+      top: 70px;
+      right: -110px; /* partially visible */
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: #1e40af;
+      color: #ffffff;
+      border-radius: 22px 0 0 22px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: right 0.35s ease;
+      z-index: 10;
+      text-decoration: none;
+    }
+
+    .back-slider:hover {
+      right: 0;
+    }
+
+    .back-icon {
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 🔙 Sliding Back Button -->
+<a href="REGISTRATION.HTML" class="back-slider">
+  <span class="back-icon">←</span>
+  <span>Back to Registration</span>
+</a>
+
+<div class="container">
+  <div class="success-title">Registration Successful!</div>
+
+  <p><strong>Name:</strong> <span id="name"></span></p>
+  <p><strong>Email:</strong> <span id="email"></span></p>
+  <p><strong>Gender:</strong> <span id="gender"></span></p>
+  <p><strong>Course:</strong> <span id="course"></span></p>
+</div>
+
+<script>
+  /* Load stored data */
+  document.getElementById("name").innerText = localStorage.getItem("name");
+  document.getElementById("email").innerText = localStorage.getItem("email");
+  document.getElementById("gender").innerText = localStorage.getItem("gender");
+  document.getElementById("course").innerText = localStorage.getItem("course");
+</script>
+
+</body>
+</html>

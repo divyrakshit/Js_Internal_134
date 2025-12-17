@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Registration</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: skyblue;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1f2937;
+    }
+
+    .container {
+      width: 560px;
+      background-color: #ffffff;
+      padding: 36px 40px;
+      border-radius: 10px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 28px;
+      color: #0f172a;
+    }
+
+    label {
+      display: block;
+      margin-top: 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 11px 12px;
+      margin-top: 6px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 1px solid #cbd5e1;
+      background-color: #ffffff;
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+    }
+
+    label input[type="checkbox"] {
+      width: auto;
+      margin-right: 8px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 30px;
+      padding: 13px;
+      background-color: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    
+    button:hover {
+      background-color: #1e40af;
+    }
+
+    .secondary-btn {
+      margin-top: 12px;
+      background-color: #16a34a;
+    }
+
+    .secondary-btn:hover {
+      background-color: #15803d;
+    }
+
+    .error {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #b91c1c;
+      text-align: center;
+    }
+
+    #output {
+      display: none;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    #output h3 {
+      color: #166534;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    #output p {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    #output strong {
+      width: 80px;
+      display: inline-block;
+      color: #334155;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Student Registration Form</h2>
+
+  <form id="form">
+    <label>Name</label>
+    <input type="text" id="name">
+
+    <label>Email</label>
+    <input type="email" id="email">
+
+    <label>Gender</label>
+    <select id="gender">
+      <option value="">-- Select Gender --</option>
+      <option>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+
+    <label>Course</label>
+    <select id="course">
+      <option value="">-- Select Course --</option>
+      <option>Java</option>
+      <option>JavaScript</option>
+      <option>Python</option>
+      <option>HTML</option>
+      <option>CSS</option>
+      <option>C#</option>
+    </select>
+
+    <label>
+      <input type="checkbox" id="terms"> I agree to Terms & Conditions
+    </label>
+
+    <button type="submit">Register</button>
+
+    <div id="error"></div>
+  </form>
+
+  <!-- Success output -->
+  <div id="output">
+    <h3>Registration Successful!</h3>
+    <p><strong>Name:</strong> <span id="o-name"></span></p>
+    <p><strong>Email:</strong> <span id="o-email"></span></p>
+    <p><strong>Gender:</strong> <span id="o-gender"></span></p>
+    <p><strong>Course:</strong> <span id="o-course"></span></p>
+
+    <!-- Manual navigation -->
+    <button class="secondary-btn" onclick="goToSuccessPage()">Go to Success Page</button>
+  </div>
+</div>
+
+<script>
+  function goToSuccessPage() {
+    window.location.href = "success.html";
+  }
+
+  document.getElementById("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const gender = document.getElementById("gender").value;
+    const course = document.getElementById("course").value;
+    const terms = document.getElementById("terms").checked;
+    const error = document.getElementById("error");
+
+    error.innerHTML = "";
+
+    if (name === "" || email === "" || gender === "" || course === "" || !terms) {
+      error.innerHTML = "<p class='error'>Please fill all fields correctly</p>";
+      return;
+    }
+
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+    localStorage.setItem("gender", gender);
+    localStorage.setItem("course", course);
+
+    document.getElementById("o-name").innerText = name;
+    document.getElementById("o-email").innerText = email;
+    document.getElementById("o-gender").innerText = gender;
+    document.getElementById("o-course").innerText = course;
+
+    document.getElementById("output").style.display = "block";
+  });
+</script>
+
+</body>
+</html>
